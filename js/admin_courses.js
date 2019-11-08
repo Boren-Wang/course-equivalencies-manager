@@ -1,3 +1,5 @@
+var editor;
+
 // $(document).ready(function() {
 //     $('#courses').DataTable();
 // } );
@@ -5,72 +7,85 @@
 function format ( d ) {
     // `d` is the original data object for the row
     return "<div>"+
-        '<table cellpadding="5" cellspacing="0" border="0" style="padding-left: 50px; float: left;">'+
-            // '<tr>'+
-            //     '<td><Strong>Course1</Strong></td>'+
-            //     '<td></td>'+
-            // '</tr>'+
-            '<tr>'+
-                '<td>Code:</td>'+
-                '<td>'+d.course1.code+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Nature:</td>'+
-                '<td>'+d.course1.nature+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Credit:</td>'+
-                '<td>' +d.course1.credit+ '</td>'+
-            '</tr>'+
+        '<table cellpadding="5" cellspacing="0" border="0">'+
             '<tr>'+
                 '<td>Description:</td>'+
-                '<td>' +d.course1.description+ '</td>'+
-            '</tr>'+
-        '</table>'+
-        '<table cellpadding="5" cellspacing="0" border="0" style="padding-left: 22.5%; display: inline-block;">'+
-            // '<tr>'+
-            //     '<td><Strong>Course2</Strong></td>'+
-            //     '<td></td>'+
-            // '</tr>'+
-            '<tr>'+
-                '<td>Code:</td>'+
-                '<td>'+d.course2.code+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Nature:</td>'+
-                '<td>'+d.course2.nature+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Credit:</td>'+
-                '<td>' +d.course2.credit+ '</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Description:</td>'+
-                '<td>' +d.course2.description+ '</td>'+
+                '<td>' +d.courses.description+ '</td>'+
             '</tr>'+
         '</table>'+
     "</div>";
 }
  
 $(document).ready(function() {
-    var table = $('#courses').DataTable( {
-        "ajax": "/ajax/data/objects.txt",
-        "columns": [
+    editor = new $.fn.dataTable.Editor( {
+        ajax: "./inc/query/admin_courses.php",
+        table: "#admin_courses",
+        i18n: {
+            create: {
+                title: "Create a new course"
+            },
+            edit: {
+                title: "Edit a course"
+            }
+        },
+        fields: [ {
+            label: "Name: ",
+            name: "name"
+        },  {
+            label: "Code: ",
+            name: "code"
+        }, {
+            label: "Credits: ",
+            name: "credits"
+        }, {
+            label: "Description: ",
+            name: "description"
+        }, {
+            label: "Syllabus: ",
+            name: "courses.syllabus_id",
+            type: "upload",
+            noFileText: "No File",
+            clearText: "Clear",
+            display: function(id) {
+                return "<a href='" + editor.file( 'syllabi', id ).web_path + "' download>" + editor.file( 'syllabi', id ).name + "</a>";
+            }
+        }]
+    } );
+    var table = $('#admin_courses').DataTable( {
+        dom: "Bfrtip",
+        ajax: {
+            url: "./inc/query/admin_courses.php",
+            type: "POST"
+        },
+        columns: [
             {
                 "class":          'details-control',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''
             },
-            { "data": "course1.name" },
-            { "data": "course2.name" },
-            { "data": "approved" }
+            { "data": "courses.name" },
+            { "data": "courses.code" },
+            { "data": "courses.credits" },
+            {   data: "syllabi.id",
+                render: function (val) {
+                    return val != null ?
+                        "<a href='" + editor.file( 'syllabi', val ).web_path + "' download=" + editor.file( 'syllabi', val ).name + ">" + editor.file( 'syllabi', val ).name + "</a>" : ""
+                },
+                defaultContent: "No File",
+                title: "Syllabus"
+            },
         ],
-        "order": [[1, 'asc']]
+        order: [[1, 'asc']],
+        select: true,
+        buttons: [
+            { extend: "create", editor: editor },
+            { extend: "edit",   editor: editor },
+            { extend: "remove", editor: editor }
+        ]
     } );
-     
     // Add event listener for opening and closing details
-    $('#courses tbody').on('click', 'td.details-control', function () {
+    $('#admin_courses tbody').on('click', 'td.details-control', function () {
         var tr = $(this).parents('tr');
         var row = table.row( tr );
  

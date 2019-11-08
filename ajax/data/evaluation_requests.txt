@@ -1,0 +1,79 @@
+{
+    "data": [
+        {
+            "course1": {
+                "code": "GG63024",
+                "name": "Fundamentals of Computers (A)",
+                "nature": "Compulsory",
+                "credit": 3,
+                "description": "",
+                "syllabus": {
+                    "web_path": "https://syllabus.stonybrook.edu/sites/default/files/courses/cse101/fall-2018/02-lec/cse101-02-fall-2018-syllabus.pdf",
+                    "name": "syllabus.pdf"
+                }
+            },
+            "course2": {
+                "code": "CSE101",
+                "name": "Introduction to Computers",
+                "nature": "Compulsory",
+                "credit": 3,
+                "description": "",
+                "syllabus": {
+                    "web_path": "https://syllabus.stonybrook.edu/sites/default/files/courses/cse101/fall-2018/02-lec/cse101-02-fall-2018-syllabus.pdf",
+                    "name": "CSE101_syllabus.pdf"
+                }
+            },
+            "approved": "pending"
+        },
+        {
+            "course1": {
+                "code": "ZJ31003",
+                "name": "Mathematical Analysis (I)",
+                "nature": "Compulsory",
+                "credit": 5,
+                "description": "",
+                "syllabus": {
+                    "web_path": "https://syllabus.stonybrook.edu/sites/default/files/courses/cse101/fall-2018/02-lec/cse101-02-fall-2018-syllabus.pdf",
+                    "name": "syllabus.pdf"
+                }
+            },
+            "course2": {
+                "code": "AMS151",
+                "name": "Applied Calculus 1",
+                "nature": "Compulsory",
+                "credit": 3,
+                "description": "",
+                "syllabus": {
+                    "web_path": "https://syllabus.stonybrook.edu/sites/default/files/courses/cse101/fall-2018/02-lec/cse101-02-fall-2018-syllabus.pdf",
+                    "name": "AMS151_syllabus.pdf"
+                }
+            },
+            "approved": "approved"
+        },
+        {
+            "course1": {
+                "code": "ZJ31002",
+                "name": "Analytic Geometry",
+                "nature": "Compulsory",
+                "credit": 2,
+                "description": "",
+                "syllabus": {
+                    "web_path": "https://syllabus.stonybrook.edu/sites/default/files/courses/cse101/fall-2018/02-lec/cse101-02-fall-2018-syllabus.pdf",
+                    "name": "syllabus.pdf"
+                }
+            },
+            "course2": {
+                "code": "AMS345",
+                "name": "Computational Geometry",
+                "nature": "Compulsory",
+                "credit": 3,
+                "description": "",
+                "syllabus": {
+                    "web_path": "https://syllabus.stonybrook.edu/sites/default/files/courses/cse101/fall-2018/02-lec/cse101-02-fall-2018-syllabus.pdf",
+                    "name": "AMS345_syllabus.pdf"
+                }
+            },
+            "approved": "denied"
+        }
+    ]
+}
