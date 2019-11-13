@@ -6,7 +6,7 @@ var editor;
 /* Formatting function for row details - modify as you need */
 function format ( d ) {
     // `d` is the original data object for the row
-    var code="Nonde";
+    var code;
     if(d.courses.description.length>0) {
         code = d.courses.code
     } else {
@@ -36,7 +36,7 @@ $(document).ready(function() {
         },
         fields: [ {
             label: "Name: ",
-            name: "course.name"
+            name: "courses.name"
         },  {
             label: "Code: ",
             name: "courses.code"

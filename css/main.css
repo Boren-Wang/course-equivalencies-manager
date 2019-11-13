@@ -5,3 +5,16 @@ td.details-control {
 tr.shown td.details-control {
     background: url('/resources/details_close.png') no-repeat center center;
 }
+
+#index h1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#index a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
