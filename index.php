@@ -3,5 +3,5 @@
 <br>
 <a href="/admin_evaluation_requests.php">Click here to administer evaluation requests</a>
 <br>
-<a href="/courses.php">Click here to evaluate courses</a>
+<a href="/evaluation.php">Click here to evaluate courses</a>
 

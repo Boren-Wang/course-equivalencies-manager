@@ -6,11 +6,17 @@ var editor;
 /* Formatting function for row details - modify as you need */
 function format ( d ) {
     // `d` is the original data object for the row
+    var code="Nonde";
+    if(d.courses.description.length>0) {
+        code = d.courses.code
+    } else {
+        code = "None"
+    }
     return "<div>"+
         '<table cellpadding="5" cellspacing="0" border="0">'+
             '<tr>'+
                 '<td>Description:</td>'+
-                '<td>' +d.courses.description+ '</td>'+
+                '<td><a href="' +d.courses.description+ '">' + code + '</a></td>'+
             '</tr>'+
         '</table>'+
     "</div>";
@@ -30,16 +36,16 @@ $(document).ready(function() {
         },
         fields: [ {
             label: "Name: ",
-            name: "name"
+            name: "course.name"
         },  {
             label: "Code: ",
-            name: "code"
+            name: "courses.code"
         }, {
             label: "Credits: ",
-            name: "credits"
+            name: "courses.credits"
         }, {
             label: "Description: ",
-            name: "description"
+            name: "courses.description"
         }, {
             label: "Syllabus: ",
             name: "courses.syllabus_id",
