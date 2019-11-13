@@ -100,13 +100,13 @@ $(document).ready(function() {
         columnDefs: [{targets: 3,
             render: function ( data, type, row ) {
               var color;
-              if (data == "pending") {
+              if (data == "Pending") {
                 color = 'black';
               } 
-              if (data == "approved") {
+              if (data == "Approved") {
                 color = 'green';
               }
-              if (data == "denied") {
+              if (data == "Denied") {
                 color = 'red';
               }
               return '<span style="color:' + color + '">' + data + '</span>';
