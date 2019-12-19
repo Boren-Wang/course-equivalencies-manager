@@ -1,8 +1,8 @@
 <?php include("header.php") ?>
 
 <div class="container">
-    <h1>Courses</h1>
-    <table id="admin_courses" class="display" cellspacing="0" width="100%">
+    <h1>Courses Evalution</h1>
+    <table id="admin_courses_evaluation" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th></th>
@@ -19,5 +19,5 @@
     <a href="/" class="btn btn-success">go back</a>
 </div>
 
-<script src="./js/admin_courses.js"></script>
+<script src="./js/admin_courses_evaluation.js"></script>
 <?php include("footer.php") ?>

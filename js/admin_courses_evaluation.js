@@ -33,7 +33,7 @@ function format ( d ) {
 $(document).ready(function() {
     editor = new $.fn.dataTable.Editor( {
         ajax: "./inc/query/admin_courses.php",
-        table: "#admin_courses",
+        table: "#admin_courses_evaluation",
         i18n: {
             create: {
                 title: "Create a new course"
@@ -42,19 +42,21 @@ $(document).ready(function() {
                 title: "Edit a course"
             }
         },
-        fields: [ {
-            label: "Name: ",
-            name: "courses.name"
-        },  {
-            label: "Code: ",
-            name: "courses.code"
-        }, {
-            label: "Credits: ",
-            name: "courses.credits"
-        }, {
-            label: "Description: ",
-            name: "courses.description"
-        },{
+        fields: [ 
+        // {
+        //     label: "Name: ",
+        //     name: "courses.name"
+        // },  {
+        //     label: "Code: ",
+        //     name: "courses.code"
+        // }, {
+        //     label: "Credits: ",
+        //     name: "courses.credits"
+        // }, {
+        //     label: "Description: ",
+        //     name: "courses.description"
+        // },
+        {
             label: "SBC: ",
             name: "courses.sbc",
             type: "select",
@@ -82,7 +84,7 @@ $(document).ready(function() {
                 { label: "Speak Effectively before an Audience (SPK)  ", value: "SPK" },
                 { label: "Write Effectively within One’s Discipline (WRTD)", value: "WRTD" },
             ]
-        }, {
+        },{
             label: "Category: ",
             name: "courses.category",
             type: "select",
@@ -91,34 +93,36 @@ $(document).ready(function() {
                 "Major Compulsory",
                 "Major Elective"
             ]
-        }, {
-            label: "University: ",
-            name: "courses.university",
-            type: "select",
-            options: [
-                "Stony Brook University",
-                "Anhui University"
-            ]
-        },{
-            label: "Department: ",
-            name: "courses.department"
-        }, {
-            label: "Syllabus: ",
-            name: "courses.syllabus_id",
-            type: "upload",
-            noFileText: "No File",
-            clearText: "Clear",
-            display: function(id) {
-                return "<a href='" + editor.file( 'syllabi', id ).web_path + "' download>" + editor.file( 'syllabi', id ).name + "</a>";
-            }
-        }]
+        },
+        // {
+        //     label: "University: ",
+        //     name: "courses.university",
+        //     type: "select",
+        //     options: [
+        //         "Stony Brook University",
+        //         "Anhui University"
+        //     ]
+        // },{
+        //     label: "Department: ",
+        //     name: "courses.department"
+        // }, {
+        //     label: "Syllabus: ",
+        //     name: "courses.syllabus_id",
+        //     type: "upload",
+        //     noFileText: "No File",
+        //     clearText: "Clear",
+        //     display: function(id) {
+        //         return "<a href='" + editor.file( 'syllabi', id ).web_path + "' download>" + editor.file( 'syllabi', id ).name + "</a>";
+        //     }
+        // }
+        ]
     } );
 
-    $('#admin_courses').on( 'click', 'tbody td:not(:first-child):not(.child)', function (e) {
+    $('#admin_courses_evaluation').on( 'click', 'tbody td:not(:first-child):not(.child)', function (e) {
         editor.bubble( this );
     } );
 
-    var table = $('#admin_courses').DataTable( {
+    var table = $('#admin_courses_evaluation').DataTable( {
         dom: "Bfrtip",
         ajax: {
             url: "./inc/query/admin_courses.php",
@@ -149,9 +153,9 @@ $(document).ready(function() {
         order: [[1, 'asc']],
         select: true,
         buttons: [
-            { extend: "create", editor: editor },
+            // { extend: "create", editor: editor },
             { extend: "edit",   editor: editor },
-            { extend: "remove", editor: editor }
+            // { extend: "remove", editor: editor }
         ],
         initComplete: function () {
             this.api().columns(2).every( function () {
@@ -176,7 +180,7 @@ $(document).ready(function() {
         }
     } );
     // Add event listener for opening and closing details
-    $('#admin_courses tbody').on('click', 'td.details-control', function () {
+    $('#admin_courses_evaluation tbody').on('click', 'td.details-control', function () {
         var tr = $(this).parents('tr');
         var row = table.row( tr );
  

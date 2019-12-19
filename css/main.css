@@ -18,3 +18,7 @@ tr.shown td.details-control {
 * {
     font-family: 'Montserrat', sans-serif;
 }
+
+select, option {
+    width: 271px;
+}

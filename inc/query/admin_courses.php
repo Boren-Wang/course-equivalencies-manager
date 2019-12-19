@@ -16,6 +16,10 @@
         Field::inst( 'courses.code' ),
         Field::inst( 'courses.credits' ),
         Field::inst( 'courses.description' ),
+        Field::inst( 'courses.sbc' ),
+        Field::inst( 'courses.category' ),
+        Field::inst( 'courses.university' ),
+        Field::inst( 'courses.department' ),
         Field::inst( 'courses.syllabus_id' )
             ->setFormatter(Format::ifEmpty(null))
             ->upload(
