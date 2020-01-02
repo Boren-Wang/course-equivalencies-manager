@@ -6,13 +6,16 @@
         <thead>
             <tr>
                 <th></th>
-                <th>Name</th>
-                <th>University</th>
-                <th>Code</th>
-                <th>Credits</th>
+                <th>AHU Course Name</th>
+                <th>AHU Course Code</th>
+                <th>AHU Course Credits</th>
+                <th>SBU Equivalent Name</th>
+                <th>SBU Equivalent Code</th>
+                <th>SBU Equivalent Credits</th>
                 <th>SBC</th>
-                <th>Category</th>
-                <th>Syllabus</th>
+                <th>SBC-2</th>
+                <th>Required By</th>
+                <th>Serve as an Elective In</th>
             </tr>
         </thead>
     </table>

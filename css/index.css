@@ -1,0 +1,82 @@
+body {
+    background-color: #000;
+}
+
+#landing-header {
+z-index: 1;
+position: relative;
+text-align: center;
+padding-top: 40vh;
+}
+
+#landing-header h1 {
+    color: #fff;
+}
+
+.slideshow { 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 24s linear infinite; 
+}
+
+.slideshow li:nth-child(1) { 
+    background-image: url(https://www.mitchellgiurgola.com/wp-content/uploads/2018/11/CSB-SBU-front-night.jpg);
+}
+.slideshow li:nth-child(2) { 
+    background-image: url(http://www.perkinseastman.com/dynamic/image/day/asset/liquid/1500x/92/777777/Center/3407707.jpg); 
+    animation-delay: 8s; 
+}
+.slideshow li:nth-child(3) { 
+    background-image: url(http://www-static.zhan.com//uploadfile/2017/12/27/6632036_201712271052181vkvX.jpg);
+    animation-delay: 16s; 
+}
+/* .slideshow li:nth-child(4) { 
+    background-image: url(https://www.longislandpress.com/wp-content/uploads/2014/02/New-Oheka-arial-shot.jpg);
+    animation-delay: 18s; 
+}
+.slideshow li:nth-child(5) { 
+    background-image: url(https://indigoeastend.com/wp-content/uploads/2018/07/GettyImages-922784216.jpg);
+    animation-delay: 24s; 
+} */
+
+@keyframes imageAnimation { 
+    0% { 
+        opacity: 0; 
+        animation-timing-function: ease-in;
+    }
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-out;
+    }
+    20% {
+        opacity: 1
+    }
+    30% {
+        opacity: 0
+    }
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}

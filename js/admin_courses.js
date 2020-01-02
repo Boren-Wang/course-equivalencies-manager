@@ -15,17 +15,25 @@ function format ( d ) {
     return "<div>"+
         '<table cellpadding="5" cellspacing="0" border="0">'+
             '<tr>'+
-                '<td class="child">Description:</td>'+
+                '<td class="child">AHU Course Description:</td>'+
                 (code==="None"?"<td class='child'>None</td>":'<td class="child"><a href="' +d.courses.description+ '">' + code + '</a></td>')+
+            '</tr>'+
+            '<tr>'+
+                '<td class="child">SBU Equivalent Description:</td>'+
+                (!d.courses.sbu_description?"<td class='child'>None</td>":'<td class="child"><a href="' +d.courses.sbu_description+ '">' + d.courses.sbu_code + '</a></td>')+
             '</tr>'+
             // '<tr>'+
             //     '<td>University:</td>'+
             //     '<td>'+d.courses.university+'</td>'+
             // '</tr>'+
             '<tr>'+
-                '<td class="child">Department:</td>'+
-                '<td class="child">'+d.courses.department+'</td>'+
+                '<td class="child">Remark:</td>'+
+                '<td class="child">'+(d.courses.remark?d.courses.remark:"None")+'</td>'+
             '</tr>'+
+            // '<tr>'+
+            //     '<td class="child">Department:</td>'+
+            //     '<td class="child">'+d.courses.department+'</td>'+
+            // '</tr>'+
         '</table>'+
     "</div>";
 }
@@ -43,24 +51,38 @@ $(document).ready(function() {
             }
         },
         fields: [ {
-            label: "Name: ",
+            label: "AHU Course Name: ",
             name: "courses.name"
         },  {
-            label: "Code: ",
+            label: "AHU Course Code: ",
             name: "courses.code"
         }, {
-            label: "Credits: ",
+            label: "AHU Course Credits: ",
             name: "courses.credits"
         }, {
-            label: "Description: ",
+            label: "AHU Course Description: ",
             name: "courses.description"
+        },{
+            label: "SBU Equivalent Name: ",
+            name: "courses.sbu_name"
+        },{
+            label: "SBU Equivalent Code: ",
+            name: "courses.sbu_code"
+        },{
+            label: "SBU Equivalent Credits: ",
+            name: "courses.sbu_credits"
+        },{
+            label: "SBU Equivalent Description: ",
+            name: "courses.sbu_description"
+        },{
+            label: "Remark: ",
+            name: "courses.remark"
         },{
             label: "SBC: ",
             name: "courses.sbc",
             type: "select",
             options: [
                 "None",
-                "Non-Transferable",
                 { label: "Explore and Understand the Fine and Performing Arts (ARTS)", value: "ARTS" },
                 { label: "Engage Global Issues (GLO)", value: "GLO" },
                 { label: "Address Problems using Critical Analysis and the Methods of the Humanities (HUM)", value: "HUM" },
@@ -83,40 +105,91 @@ $(document).ready(function() {
                 { label: "Write Effectively within One’s Discipline (WRTD)", value: "WRTD" },
             ]
         }, {
-            label: "Category: ",
-            name: "courses.category",
+            label: "SBC2: ",
+            name: "courses.sbc2",
             type: "select",
             options: [
-                "General Education",
-                "Major Compulsory",
-                "Major Elective"
+                "None",
+                { label: "Explore and Understand the Fine and Performing Arts (ARTS)", value: "ARTS" },
+                { label: "Engage Global Issues (GLO)", value: "GLO" },
+                { label: "Address Problems using Critical Analysis and the Methods of the Humanities (HUM)", value: "HUM" },
+                { label: "Communicate in a Human Language Other than English (LANG)", value: "LANG" },
+                { label: "Master Quantitative Problem Solving (QPS)", value: "QPS" },
+                { label: "Understand, Observe, and Analyze Human Behavior and the Structure and Functioning of Society (SBS)", value: "SBS" },
+                { label: "Study the Natural World (SNW)", value: "SNW" },
+                { label: "Understand Technology (TECH)", value: "TECH" },
+                { label: "Understand the Political, Economic, Social, and Cultural History of the United States (USA)", value: "USA" },
+                { label: "Write Effectively in English (WRT)", value: "WRT" },
+                { label: "Examine significant relationships between Science or Technology and the Arts, Humanities, or Social Sciences (STAS)", value: "STAS" },
+                { label: "Experiential Learning (EXP+)", value: "EXP+" },
+                { label: "Humanities and Fine Arts (HFA+)", value: "HFA+" },
+                { label: "Social and Behavioral Sciences (SBS+)", value: "SBS+" },
+                { label: "Science, Technology, Engineering, and Mathematics (STEM+)", value: "STEM+" },
+                { label: "Practice and Respect Critical and Ethical Reasoning (CER)  ", value: "CER" },
+                { label: "Respect Diversity and Foster Inclusiveness (DIV) (see Note 2 below)", value: "DIV" },
+                { label: "Evaluate and Synthesize Researched Information (ESI)  ", value: "ESI" },
+                { label: "Speak Effectively before an Audience (SPK)  ", value: "SPK" },
+                { label: "Write Effectively within One’s Discipline (WRTD)", value: "WRTD" },
             ]
-        }, {
-            label: "University: ",
-            name: "courses.university",
+        },
+        // {
+        //     label: "Department: ",
+        //     name: "courses.department"
+        // }, 
+        {
+            label: "Required By: ",
+            name: "courses.required",
             type: "select",
             options: [
-                "Stony Brook University",
-                "Anhui University"
+                "None",
+                "AMS",
+                "ISE",
+                "PHY",
+                "AMS & ISE",
+                "AMS & PHY",
+                "ISE & PHY",
+                "AMS & ISE & PHY"
             ]
-        },{
-            label: "Department: ",
-            name: "courses.department"
         }, {
-            label: "Syllabus: ",
-            name: "courses.syllabus_id",
-            type: "upload",
-            noFileText: "No File",
-            clearText: "Clear",
-            display: function(id) {
-                return "<a href='" + editor.file( 'syllabi', id ).web_path + "' download>" + editor.file( 'syllabi', id ).name + "</a>";
-            }
-        }]
+            label: "Serve as an Elective In: ",
+            name: "courses.elective",
+            type: "select",
+            options: [
+                "None",
+                "AMS",
+                "ISE",
+                "PHY",
+                "AMS & ISE",
+                "AMS & PHY",
+                "ISE & PHY",
+                "AMS & ISE & PHY"
+            ]
+        },
+        // {
+        //     label: "University: ",
+        //     name: "courses.university",
+        //     type: "select",
+        //     options: [
+        //         "Stony Brook University",
+        //         "Anhui University"
+        //     ]
+        // },
+        // {
+        //     label: "Syllabus: ",
+        //     name: "courses.syllabus_id",
+        //     type: "upload",
+        //     noFileText: "No File",
+        //     clearText: "Clear",
+        //     display: function(id) {
+        //         return "<a href='" + editor.file( 'syllabi', id ).web_path + "' download>" + editor.file( 'syllabi', id ).name + "</a>";
+        //     }
+        // }
+        ]
     } );
 
-    $('#admin_courses').on( 'click', 'tbody td:not(:first-child):not(.child)', function (e) {
-        editor.bubble( this );
-    } );
+    // $('#admin_courses').on( 'click', 'tbody td:not(:first-child):not(.child)', function (e) {
+    //     editor.bubble( this );
+    // } );
 
     var table = $('#admin_courses').DataTable( {
         dom: "Bfrtip",
@@ -132,19 +205,24 @@ $(document).ready(function() {
                 "defaultContent": ''
             },
             { "data": "courses.name" },
-            { "data": "courses.university" },
             { "data": "courses.code" },
             { "data": "courses.credits" },
+            { "data": "courses.sbu_name" },
+            { "data": "courses.sbu_code" },
+            { "data": "courses.sbu_credits" },
             { "data": "courses.sbc" },
-            { "data": "courses.category" },
-            {   data: "syllabi.id",
-                render: function (val) {
-                    return val != null ?
-                        "<a href='" + editor.file( 'syllabi', val ).web_path + "' download=" + editor.file( 'syllabi', val ).name + ">" + editor.file( 'syllabi', val ).name + "</a>" : ""
-                },
-                defaultContent: "No File",
-                title: "Syllabus"
-            },
+            { "data": "courses.sbc2" },
+            { "data": "courses.required" },
+            { "data": "courses.elective" },
+            // { "data": "courses.category" },
+            // {   data: "syllabi.id",
+            //     render: function (val) {
+            //         return val != null ?
+            //             "<a href='" + editor.file( 'syllabi', val ).web_path + "' download=" + editor.file( 'syllabi', val ).name + ">" + editor.file( 'syllabi', val ).name + "</a>" : ""
+            //     },
+            //     defaultContent: "No File",
+            //     title: "Syllabus"
+            // },
         ],
         order: [[1, 'asc']],
         select: true,
@@ -153,27 +231,27 @@ $(document).ready(function() {
             { extend: "edit",   editor: editor },
             { extend: "remove", editor: editor }
         ],
-        initComplete: function () {
-            this.api().columns(2).every( function () {
-                var column = this;
-                var select = $('<select><option value="">University</option></select>')
-                    .appendTo( $(column.header()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
+        // initComplete: function () {
+        //     this.api().columns(2).every( function () {
+        //         var column = this;
+        //         var select = $('<select><option value="">University</option></select>')
+        //             .appendTo( $(column.header()).empty() )
+        //             .on( 'change', function () {
+        //                 var val = $.fn.dataTable.util.escapeRegex(
+        //                     $(this).val()
+        //                 );
 
-                        column
-                            .search( this.value )
-                            .draw();
-                    } );
-                // console.log(column.data());
-                column.data().sort().unique().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
+        //                 column
+        //                     .search( this.value )
+        //                     .draw();
+        //             } );
+        //         // console.log(column.data());
+        //         column.data().sort().unique().each( function ( d, j ) {
+        //             select.append( '<option value="'+d+'">'+d+'</option>' )
+        //         } );
                 
-            } );
-        }
+        //     } );
+        // }
     } );
     // Add event listener for opening and closing details
     $('#admin_courses tbody').on('click', 'td.details-control', function () {

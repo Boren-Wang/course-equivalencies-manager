@@ -1,14 +1,16 @@
 <?php include("header.php") ?>
 
 <div class="container">
-<h1>Evaluation Requests</h1>
+<h1>Anhui University Courses</h1>
 <table id="admin_evaluation_requests" class="display">
     <thead>
         <tr>
             <th></th>
-            <th>Anhui University</th>
-            <th>Stony Brook University</th>
-            <th>Course Equivalency</th>
+            <th>Courses</th>
+            <th>SBU Equivalent</th>
+            <th>SBC</th>
+            <th>Required By</th>
+            <th>Serve as an Elective In</th>
         </tr>
     </thead>
 </table>

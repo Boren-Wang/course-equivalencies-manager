@@ -83,11 +83,11 @@ $(document).ready(function() {
             }
         },
         fields: [ {
-            label: "Course 1",
+            label: "Course",
             name: "evaluation_requests.course1_id",
             type: "select"
         },  {
-            label: "Course 2",
+            label: "SBU Equivalent",
             name: "evaluation_requests.course2_id",
             type: "select"
         }]
