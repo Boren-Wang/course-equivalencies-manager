@@ -20,5 +20,5 @@ tr.shown td.details-control {
 }
 
 select, option {
-    width: 271px;
+    max-width: 271px;
 }

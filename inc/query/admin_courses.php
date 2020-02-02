@@ -20,6 +20,7 @@
         Field::inst( 'courses.sbu_code' ),
         Field::inst( 'courses.sbu_credits' ),
         Field::inst( 'courses.sbu_description' ),
+        Field::inst( 'courses.semester' ),
         Field::inst( 'courses.remark' ),
         Field::inst( 'courses.sbc' ),
         Field::inst( 'courses.sbc2' ),
@@ -38,7 +39,6 @@
                         'size' => Upload::DB_FILE_SIZE,
                         'web_path' => Upload::DB_WEB_PATH
                     ))
-                    
         ),
         Field::inst('syllabi.id'),
         Field::inst('syllabi.name'),

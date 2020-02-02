@@ -74,6 +74,21 @@ $(document).ready(function() {
         },{
             label: "SBU Equivalent Description: ",
             name: "courses.sbu_description"
+        },
+        {
+            label: "Semester: ",
+            name: "courses.semester",
+            type: "select",
+            options: [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+            ]
         },{
             label: "Remark: ",
             name: "courses.remark"
@@ -210,6 +225,7 @@ $(document).ready(function() {
             { "data": "courses.sbu_name" },
             { "data": "courses.sbu_code" },
             { "data": "courses.sbu_credits" },
+            { "data": "courses.semester" },
             { "data": "courses.sbc" },
             { "data": "courses.sbc2" },
             { "data": "courses.required" },
@@ -249,10 +265,56 @@ $(document).ready(function() {
         //         column.data().sort().unique().each( function ( d, j ) {
         //             select.append( '<option value="'+d+'">'+d+'</option>' )
         //         } );
-                
         //     } );
         // }
+        initComplete: function () {
+            this.api().columns([7, 10, 11]).every( function () {
+                var column = this;
+                var columnHeader;
+                if(this.index()===7){
+                    columnHeader="Semester"
+                } else if(this.index()===10){
+                    columnHeader="Required By"
+                } else if(this.index()===11){
+                    columnHeader="Serve as an Elective in"
+                }
+                var select = $('<select><option value="">'+columnHeader+'</option></select>')
+                    .appendTo( $(column.header()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
     } );
+
+    // table
+    //     .column(9)
+    //     .search( "AMS" )
+    //     .draw();
+    // table.search( "AMS" ).draw();
+    $('#drop_down').on('change', function() {
+        // alert(this.value)
+        if(this.value==="ALL"){
+            table.search().draw();
+        } else if(this.value==="AMS"){
+            table.search("AMS").draw();
+        } else if(this.value==="CSE"){
+            table.search("CSE").draw();
+        } else if(this.value==="PHY"){
+            table.search("PHY").draw();
+        } 
+    });
+
     // Add event listener for opening and closing details
     $('#admin_courses tbody').on('click', 'td.details-control', function () {
         var tr = $(this).parents('tr');

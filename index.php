@@ -20,7 +20,10 @@
     
     <div id="landing-header">
         <h1>Course Equivalency Database</h1>
-        <a href="/admin_courses.php" class="btn btn-lg btn-success">Click Here to <strong>Administer</strong> Courses</a>
+        <a href="/admin_courses.php" class="btn btn-lg btn-success">Click Here to Administer <strong>All</strong> Courses</a>
+        <!-- <a href="/admin_courses.php" class="btn btn-lg btn-success">Click Here to Administer <strong>AMS</strong> Courses</a>
+        <a href="/admin_courses.php" class="btn btn-lg btn-success">Click Here to Administer <strong>CSE</strong> Courses</a>
+        <a href="/admin_courses.php" class="btn btn-lg btn-success">Click Here to Administer <strong>PHY</strong> Courses</a> -->
     </div>
     
     <ul class="slideshow">
