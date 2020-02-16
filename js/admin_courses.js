@@ -305,7 +305,7 @@ $(document).ready(function() {
     $('#drop_down').on('change', function() {
         // alert(this.value)
         if(this.value==="ALL"){
-            table.search().draw();
+            table.search("").draw();
         } else if(this.value==="AMS"){
             table.search("AMS").draw();
         } else if(this.value==="CSE"){
