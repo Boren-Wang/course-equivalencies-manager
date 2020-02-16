@@ -32,6 +32,22 @@ function format ( d ) {
             //     '<td class="child">Department:</td>'+
             //     '<td class="child">'+d.courses.department+'</td>'+
             // '</tr>'+
+            '<tr>'+
+                '<td class="child">SBC-2:</td>'+
+                '<td class="child">'+(d.courses.sbc2)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="child">SBC-3:</td>'+
+                '<td class="child">'+(d.courses.sbc3)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="child">SBC-4:</td>'+
+                '<td class="child">'+(d.courses.sbc4)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="child">SBC-5:</td>'+
+                '<td class="child">'+(d.courses.sbc5)+'</td>'+
+            '</tr>'+
         '</table>'+
     "</div>";
 }
@@ -57,10 +73,17 @@ $(document).ready(function() {
             { "data": "courses.sbu_code" },
             { "data": "courses.sbu_credits" },
             { "data": "courses.semester" },
-            { "data": "courses.sbc" },
-            { "data": "courses.sbc2" },
+            { "data": "courses.related_major" },
             { "data": "courses.required" },
             { "data": "courses.elective" },
+            { "data": "courses.ahu_required",
+                render: function(val) {
+                    return val == 1 ? "Yes" : "No";
+                }
+            },
+            { "data": "courses.sbc" },
+            // { "data": "courses.sbc2" },
+            
         ],
         order: [[1, 'asc']],
         select: true,
@@ -68,16 +91,16 @@ $(document).ready(function() {
             'csv', 'pdf', 'print'
         ],
         initComplete: function () {
-            this.api().columns([7, 10, 11]).every( function () {
+            this.api().columns([7]).every( function () {
                 var column = this;
-                var columnHeader;
-                if(this.index()===7){
-                    columnHeader="Semester"
-                } else if(this.index()===10){
-                    columnHeader="Required By"
-                } else if(this.index()===11){
-                    columnHeader="Serve as an Elective in"
-                }
+                var columnHeader="semester";
+                // if(this.index()===7){
+                //     columnHeader="Semester"
+                // } else if(this.index()===9){
+                //     columnHeader="Major Requirement"
+                // } else if(this.index()===10){
+                //     columnHeader="Elective"
+                // }
                 var select = $('<select><option value="">'+columnHeader+'</option></select>')
                     .appendTo( $(column.header()).empty() )
                     .on( 'change', function () {
@@ -100,13 +123,17 @@ $(document).ready(function() {
     $('#show_drop_down').on('change', function() {
         // alert(this.value)
         if(this.value==="ALL"){
-            table.search("").draw();
+            // alert(this.value);
+            table.column(8).search("").draw();
         } else if(this.value==="AMS"){
-            table.search("AMS").draw();
-        } else if(this.value==="CSE"){
-            table.search("CSE").draw();
+            // alert(this.value);
+            table.column(8).search("AMS").draw();
+        } else if(this.value==="ISE"){
+            // alert(this.value);
+            table.column(8).search("ISE").draw();
         } else if(this.value==="PHY"){
-            table.search("PHY").draw();
+            // alert(this.value);
+            table.column(8).search("PHY").draw();
         } 
     });
 

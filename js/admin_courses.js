@@ -34,6 +34,22 @@ function format ( d ) {
             //     '<td class="child">Department:</td>'+
             //     '<td class="child">'+d.courses.department+'</td>'+
             // '</tr>'+
+            '<tr>'+
+                '<td class="child">SBC-2:</td>'+
+                '<td class="child">'+(d.courses.sbc2)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="child">SBC-3:</td>'+
+                '<td class="child">'+(d.courses.sbc3)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="child">SBC-4:</td>'+
+                '<td class="child">'+(d.courses.sbc4)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="child">SBC-5:</td>'+
+                '<td class="child">'+(d.courses.sbc5)+'</td>'+
+            '</tr>'+
         '</table>'+
     "</div>";
 }
@@ -76,6 +92,10 @@ $(document).ready(function() {
             name: "courses.sbu_description"
         },
         {
+            label: "Remark: ",
+            name: "courses.remark"
+        },
+        {
             label: "Semester: ",
             name: "courses.semester",
             type: "select",
@@ -89,70 +109,24 @@ $(document).ready(function() {
                 7,
                 8
             ]
-        },{
-            label: "Remark: ",
-            name: "courses.remark"
-        },{
-            label: "SBC: ",
-            name: "courses.sbc",
+        },
+        {
+            label: "Related Major",
+            name: "courses.related_major",
             type: "select",
             options: [
                 "None",
-                { label: "Explore and Understand the Fine and Performing Arts (ARTS)", value: "ARTS" },
-                { label: "Engage Global Issues (GLO)", value: "GLO" },
-                { label: "Address Problems using Critical Analysis and the Methods of the Humanities (HUM)", value: "HUM" },
-                { label: "Communicate in a Human Language Other than English (LANG)", value: "LANG" },
-                { label: "Master Quantitative Problem Solving (QPS)", value: "QPS" },
-                { label: "Understand, Observe, and Analyze Human Behavior and the Structure and Functioning of Society (SBS)", value: "SBS" },
-                { label: "Study the Natural World (SNW)", value: "SNW" },
-                { label: "Understand Technology (TECH)", value: "TECH" },
-                { label: "Understand the Political, Economic, Social, and Cultural History of the United States (USA)", value: "USA" },
-                { label: "Write Effectively in English (WRT)", value: "WRT" },
-                { label: "Examine significant relationships between Science or Technology and the Arts, Humanities, or Social Sciences (STAS)", value: "STAS" },
-                { label: "Experiential Learning (EXP+)", value: "EXP+" },
-                { label: "Humanities and Fine Arts (HFA+)", value: "HFA+" },
-                { label: "Social and Behavioral Sciences (SBS+)", value: "SBS+" },
-                { label: "Science, Technology, Engineering, and Mathematics (STEM+)", value: "STEM+" },
-                { label: "Practice and Respect Critical and Ethical Reasoning (CER)  ", value: "CER" },
-                { label: "Respect Diversity and Foster Inclusiveness (DIV) (see Note 2 below)", value: "DIV" },
-                { label: "Evaluate and Synthesize Researched Information (ESI)  ", value: "ESI" },
-                { label: "Speak Effectively before an Audience (SPK)  ", value: "SPK" },
-                { label: "Write Effectively within One’s Discipline (WRTD)", value: "WRTD" },
-            ]
-        }, {
-            label: "SBC2: ",
-            name: "courses.sbc2",
-            type: "select",
-            options: [
-                "None",
-                { label: "Explore and Understand the Fine and Performing Arts (ARTS)", value: "ARTS" },
-                { label: "Engage Global Issues (GLO)", value: "GLO" },
-                { label: "Address Problems using Critical Analysis and the Methods of the Humanities (HUM)", value: "HUM" },
-                { label: "Communicate in a Human Language Other than English (LANG)", value: "LANG" },
-                { label: "Master Quantitative Problem Solving (QPS)", value: "QPS" },
-                { label: "Understand, Observe, and Analyze Human Behavior and the Structure and Functioning of Society (SBS)", value: "SBS" },
-                { label: "Study the Natural World (SNW)", value: "SNW" },
-                { label: "Understand Technology (TECH)", value: "TECH" },
-                { label: "Understand the Political, Economic, Social, and Cultural History of the United States (USA)", value: "USA" },
-                { label: "Write Effectively in English (WRT)", value: "WRT" },
-                { label: "Examine significant relationships between Science or Technology and the Arts, Humanities, or Social Sciences (STAS)", value: "STAS" },
-                { label: "Experiential Learning (EXP+)", value: "EXP+" },
-                { label: "Humanities and Fine Arts (HFA+)", value: "HFA+" },
-                { label: "Social and Behavioral Sciences (SBS+)", value: "SBS+" },
-                { label: "Science, Technology, Engineering, and Mathematics (STEM+)", value: "STEM+" },
-                { label: "Practice and Respect Critical and Ethical Reasoning (CER)  ", value: "CER" },
-                { label: "Respect Diversity and Foster Inclusiveness (DIV) (see Note 2 below)", value: "DIV" },
-                { label: "Evaluate and Synthesize Researched Information (ESI)  ", value: "ESI" },
-                { label: "Speak Effectively before an Audience (SPK)  ", value: "SPK" },
-                { label: "Write Effectively within One’s Discipline (WRTD)", value: "WRTD" },
+                "AMS",
+                "ISE",
+                "PHY",
+                "AMS & ISE",
+                "AMS & PHY",
+                "ISE & PHY",
+                "AMS & ISE & PHY"
             ]
         },
-        // {
-        //     label: "Department: ",
-        //     name: "courses.department"
-        // }, 
         {
-            label: "Required By: ",
+            label: "Major Requirement: ",
             name: "courses.required",
             type: "select",
             options: [
@@ -166,7 +140,7 @@ $(document).ready(function() {
                 "AMS & ISE & PHY"
             ]
         }, {
-            label: "Serve as an Elective In: ",
+            label: "Elective: ",
             name: "courses.elective",
             type: "select",
             options: [
@@ -180,6 +154,155 @@ $(document).ready(function() {
                 "AMS & ISE & PHY"
             ]
         },
+        {
+            label: "AHU Requirement: ",
+            name: "courses.ahu_required",
+            type: "select",
+            options: [
+                {label: "Yes", value: 1},
+                {label: "No", value: 0},
+            ]
+        }, 
+        {
+            label: "SBC: ",
+            name: "courses.sbc",
+            type: "select",
+            options: [
+                "None",
+                { label: "(ARTS) Explore and Understand the Fine and Performing Arts", value: "ARTS" },
+                { label: "(GLO) Engage Global Issues", value: "GLO" },
+                { label: "(HUM) Address Problems using Critical Analysis and the Methods of the Humanities", value: "HUM" },
+                { label: "(LANG) Communicate in a Human Language Other than English", value: "LANG" },
+                { label: "(QPS) Master Quantitative Problem Solving", value: "QPS" },
+                { label: "(SBS)Understand, Observe, and Analyze Human Behavior and the Structure and Functioning of Society", value: "SBS" },
+                { label: "(SNW) Study the Natural World", value: "SNW" },
+                { label: "(TECH) Understand Technology", value: "TECH" },
+                { label: "(USA) Understand the Political, Economic, Social, and Cultural History of the United States", value: "USA" },
+                { label: "(WRT) Write Effectively in English (WRT)", value: "WRT" },
+                { label: "(STAS) Examine significant relationships between Science or Technology and the Arts, Humanities, or Social Sciences", value: "STAS" },
+                { label: "(EXP+) Experiential Learning", value: "EXP+" },
+                { label: "(HFA+) Humanities and Fine Arts", value: "HFA+" },
+                { label: "(SBS+) Social and Behavioral Sciences", value: "SBS+" },
+                { label: "(STEM+) Science, Technology, Engineering, and Mathematics", value: "STEM+" },
+                { label: "(CER) Practice and Respect Critical and Ethical Reasoning", value: "CER" },
+                { label: "(DIV) Respect Diversity and Foster Inclusiveness (see Note 2 below)", value: "DIV" },
+                { label: "(ESI) Evaluate and Synthesize Researched Information", value: "ESI" },
+                { label: "(SPK) Speak Effectively before an Audience", value: "SPK" },
+                { label: "(WRTD) Write Effectively within One’s Discipline", value: "WRTD" },
+            ]
+        }, {
+            label: "SBC2: ",
+            name: "courses.sbc2",
+            type: "select",
+            options: [
+                "None",
+                { label: "(ARTS) Explore and Understand the Fine and Performing Arts", value: "ARTS" },
+                { label: "(GLO) Engage Global Issues", value: "GLO" },
+                { label: "(HUM) Address Problems using Critical Analysis and the Methods of the Humanities", value: "HUM" },
+                { label: "(LANG) Communicate in a Human Language Other than English", value: "LANG" },
+                { label: "(QPS) Master Quantitative Problem Solving", value: "QPS" },
+                { label: "(SBS)Understand, Observe, and Analyze Human Behavior and the Structure and Functioning of Society", value: "SBS" },
+                { label: "(SNW) Study the Natural World", value: "SNW" },
+                { label: "(TECH) Understand Technology", value: "TECH" },
+                { label: "(USA) Understand the Political, Economic, Social, and Cultural History of the United States", value: "USA" },
+                { label: "(WRT) Write Effectively in English (WRT)", value: "WRT" },
+                { label: "(STAS) Examine significant relationships between Science or Technology and the Arts, Humanities, or Social Sciences", value: "STAS" },
+                { label: "(EXP+) Experiential Learning", value: "EXP+" },
+                { label: "(HFA+) Humanities and Fine Arts", value: "HFA+" },
+                { label: "(SBS+) Social and Behavioral Sciences", value: "SBS+" },
+                { label: "(STEM+) Science, Technology, Engineering, and Mathematics", value: "STEM+" },
+                { label: "(CER) Practice and Respect Critical and Ethical Reasoning", value: "CER" },
+                { label: "(DIV) Respect Diversity and Foster Inclusiveness (see Note 2 below)", value: "DIV" },
+                { label: "(ESI) Evaluate and Synthesize Researched Information", value: "ESI" },
+                { label: "(SPK) Speak Effectively before an Audience", value: "SPK" },
+                { label: "(WRTD) Write Effectively within One’s Discipline", value: "WRTD" },
+            ]
+        },
+        {
+            label: "SBC3: ",
+            name: "courses.sbc3",
+            type: "select",
+            options: [
+                "None",
+                { label: "(ARTS) Explore and Understand the Fine and Performing Arts", value: "ARTS" },
+                { label: "(GLO) Engage Global Issues", value: "GLO" },
+                { label: "(HUM) Address Problems using Critical Analysis and the Methods of the Humanities", value: "HUM" },
+                { label: "(LANG) Communicate in a Human Language Other than English", value: "LANG" },
+                { label: "(QPS) Master Quantitative Problem Solving", value: "QPS" },
+                { label: "(SBS)Understand, Observe, and Analyze Human Behavior and the Structure and Functioning of Society", value: "SBS" },
+                { label: "(SNW) Study the Natural World", value: "SNW" },
+                { label: "(TECH) Understand Technology", value: "TECH" },
+                { label: "(USA) Understand the Political, Economic, Social, and Cultural History of the United States", value: "USA" },
+                { label: "(WRT) Write Effectively in English (WRT)", value: "WRT" },
+                { label: "(STAS) Examine significant relationships between Science or Technology and the Arts, Humanities, or Social Sciences", value: "STAS" },
+                { label: "(EXP+) Experiential Learning", value: "EXP+" },
+                { label: "(HFA+) Humanities and Fine Arts", value: "HFA+" },
+                { label: "(SBS+) Social and Behavioral Sciences", value: "SBS+" },
+                { label: "(STEM+) Science, Technology, Engineering, and Mathematics", value: "STEM+" },
+                { label: "(CER) Practice and Respect Critical and Ethical Reasoning", value: "CER" },
+                { label: "(DIV) Respect Diversity and Foster Inclusiveness (see Note 2 below)", value: "DIV" },
+                { label: "(ESI) Evaluate and Synthesize Researched Information", value: "ESI" },
+                { label: "(SPK) Speak Effectively before an Audience", value: "SPK" },
+                { label: "(WRTD) Write Effectively within One’s Discipline", value: "WRTD" },
+            ]
+        },
+        {
+            label: "SBC4: ",
+            name: "courses.sbc4",
+            type: "select",
+            options: [
+                "None",
+                { label: "(ARTS) Explore and Understand the Fine and Performing Arts", value: "ARTS" },
+                { label: "(GLO) Engage Global Issues", value: "GLO" },
+                { label: "(HUM) Address Problems using Critical Analysis and the Methods of the Humanities", value: "HUM" },
+                { label: "(LANG) Communicate in a Human Language Other than English", value: "LANG" },
+                { label: "(QPS) Master Quantitative Problem Solving", value: "QPS" },
+                { label: "(SBS)Understand, Observe, and Analyze Human Behavior and the Structure and Functioning of Society", value: "SBS" },
+                { label: "(SNW) Study the Natural World", value: "SNW" },
+                { label: "(TECH) Understand Technology", value: "TECH" },
+                { label: "(USA) Understand the Political, Economic, Social, and Cultural History of the United States", value: "USA" },
+                { label: "(WRT) Write Effectively in English (WRT)", value: "WRT" },
+                { label: "(STAS) Examine significant relationships between Science or Technology and the Arts, Humanities, or Social Sciences", value: "STAS" },
+                { label: "(EXP+) Experiential Learning", value: "EXP+" },
+                { label: "(HFA+) Humanities and Fine Arts", value: "HFA+" },
+                { label: "(SBS+) Social and Behavioral Sciences", value: "SBS+" },
+                { label: "(STEM+) Science, Technology, Engineering, and Mathematics", value: "STEM+" },
+                { label: "(CER) Practice and Respect Critical and Ethical Reasoning", value: "CER" },
+                { label: "(DIV) Respect Diversity and Foster Inclusiveness (see Note 2 below)", value: "DIV" },
+                { label: "(ESI) Evaluate and Synthesize Researched Information", value: "ESI" },
+                { label: "(SPK) Speak Effectively before an Audience", value: "SPK" },
+                { label: "(WRTD) Write Effectively within One’s Discipline", value: "WRTD" },
+            ]
+        },
+        {
+            label: "SBC5: ",
+            name: "courses.sbc5",
+            type: "select",
+            options: [
+                "None",
+                { label: "(ARTS) Explore and Understand the Fine and Performing Arts", value: "ARTS" },
+                { label: "(GLO) Engage Global Issues", value: "GLO" },
+                { label: "(HUM) Address Problems using Critical Analysis and the Methods of the Humanities", value: "HUM" },
+                { label: "(LANG) Communicate in a Human Language Other than English", value: "LANG" },
+                { label: "(QPS) Master Quantitative Problem Solving", value: "QPS" },
+                { label: "(SBS)Understand, Observe, and Analyze Human Behavior and the Structure and Functioning of Society", value: "SBS" },
+                { label: "(SNW) Study the Natural World", value: "SNW" },
+                { label: "(TECH) Understand Technology", value: "TECH" },
+                { label: "(USA) Understand the Political, Economic, Social, and Cultural History of the United States", value: "USA" },
+                { label: "(WRT) Write Effectively in English (WRT)", value: "WRT" },
+                { label: "(STAS) Examine significant relationships between Science or Technology and the Arts, Humanities, or Social Sciences", value: "STAS" },
+                { label: "(EXP+) Experiential Learning", value: "EXP+" },
+                { label: "(HFA+) Humanities and Fine Arts", value: "HFA+" },
+                { label: "(SBS+) Social and Behavioral Sciences", value: "SBS+" },
+                { label: "(STEM+) Science, Technology, Engineering, and Mathematics", value: "STEM+" },
+                { label: "(CER) Practice and Respect Critical and Ethical Reasoning", value: "CER" },
+                { label: "(DIV) Respect Diversity and Foster Inclusiveness (see Note 2 below)", value: "DIV" },
+                { label: "(ESI) Evaluate and Synthesize Researched Information", value: "ESI" },
+                { label: "(SPK) Speak Effectively before an Audience", value: "SPK" },
+                { label: "(WRTD) Write Effectively within One’s Discipline", value: "WRTD" },
+            ]
+        },
+        
         // {
         //     label: "University: ",
         //     name: "courses.university",
@@ -226,10 +349,15 @@ $(document).ready(function() {
             { "data": "courses.sbu_code" },
             { "data": "courses.sbu_credits" },
             { "data": "courses.semester" },
-            { "data": "courses.sbc" },
-            { "data": "courses.sbc2" },
+            { "data": "courses.related_major" },
             { "data": "courses.required" },
             { "data": "courses.elective" },
+            { "data": "courses.ahu_required",
+                render: function(val) {
+                    return val == 1 ? "Yes" : "No";
+                }
+            },
+            { "data": "courses.sbc" },
             // { "data": "courses.category" },
             // {   data: "syllabi.id",
             //     render: function (val) {
@@ -271,16 +399,16 @@ $(document).ready(function() {
         //     } );
         // }
         initComplete: function () {
-            this.api().columns([7, 10, 11]).every( function () {
+            this.api().columns([7]).every( function () {
                 var column = this;
-                var columnHeader;
-                if(this.index()===7){
-                    columnHeader="Semester"
-                } else if(this.index()===10){
-                    columnHeader="Required By"
-                } else if(this.index()===11){
-                    columnHeader="Serve as an Elective in"
-                }
+                var columnHeader="semester";
+                // if(this.index()===7){
+                //     columnHeader="Semester"
+                // } else if(this.index()===9){
+                //     columnHeader="Major Requirement"
+                // } else if(this.index()===10){
+                //     columnHeader="Elective"
+                // }
                 var select = $('<select><option value="">'+columnHeader+'</option></select>')
                     .appendTo( $(column.header()).empty() )
                     .on( 'change', function () {
@@ -308,13 +436,17 @@ $(document).ready(function() {
     $('#admin_drop_down').on('change', function() {
         // alert(this.value)
         if(this.value==="ALL"){
-            table.search("").draw();
+            // alert(this.value);
+            table.column(8).search("").draw();
         } else if(this.value==="AMS"){
-            table.search("AMS").draw();
-        } else if(this.value==="CSE"){
-            table.search("CSE").draw();
+            // alert(this.value);
+            table.column(8).search("AMS").draw();
+        } else if(this.value==="ISE"){
+            // alert(this.value);
+            table.column(8).search("ISE").draw();
         } else if(this.value==="PHY"){
-            table.search("PHY").draw();
+            // alert(this.value);
+            table.column(8).search("PHY").draw();
         } 
     });
 

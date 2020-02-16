@@ -1,4 +1,10 @@
 <?php 
+    session_start();
+    if(!isset($_SESSION['user'])){
+        header("location: ./login.php");
+        exit();
+    }
+    
     include("header.php");
     include("navbar_admin.php");
 ?>
@@ -9,7 +15,7 @@
     <select id="admin_drop_down">
         <option value="ALL">Administer ALL Courses</option>
         <option value="AMS">Administer AMS-related Courses</option>
-        <option value="CSE">Administer CSE-related Courses</option>
+        <option value="ISE">Administer ISE-related Courses</option>
         <option value="PHY">Administer PHY-related Courses</option>
     </select>
     <table id="admin_courses" class="display table-condensed" cellspacing="0" width="100%">
@@ -23,10 +29,11 @@
                 <th>SBU Equivalent Code</th>
                 <th>SBU Equivalent Credits</th>
                 <th>Semester</th>
+                <th>Related Major</th>
+                <th>Major Requirement</th>
+                <th>Elective</th>
+                <th>AHU Requirement</th>
                 <th>SBC</th>
-                <th>SBC-2</th>
-                <th>Required By</th>
-                <th>Serve as an Elective In</th>
             </tr>
         </thead>
     </table>

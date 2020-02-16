@@ -1,10 +1,6 @@
 <?php 
-    session_start();
-    if(!isset($_SESSION['user'])){
-        header("location: ./login.php");
-        exit();
-    }
     include("header.php");
+    include("navbar_show.php");
 ?>
 
 <div class="container">
@@ -12,7 +8,7 @@
     <select id="show_drop_down">
         <option value="ALL">Show ALL Courses</option>
         <option value="AMS">Show AMS-related Courses</option>
-        <option value="CSE">Show CSE-related Courses</option>
+        <option value="ISE">Show ISE-related Courses</option>
         <option value="PHY">Show PHY-related Courses</option>
     </select>
     <table id="show_courses" class="display table-condensed" cellspacing="0" width="100%">
@@ -20,16 +16,18 @@
             <tr>
                 <th style="min-width: 10px"></th>
                 <th>AHU Course Name</th>
-                <th>AHU Course Code</th>
-                <th>AHU Course Credits</th>
+                <th>AHU Code</th>
+                <th>AHU Credits</th>
                 <th>SBU Equivalent Name</th>
-                <th>SBU Equivalent Code</th>
-                <th>SBU Equivalent Credits</th>
+                <th>SBU Code</th>
+                <th>SBU Credits</th>
                 <th>Semester</th>
+                <th>Related Major</th>
+                <th>Major Requirement</th>
+                <th>Elective</th>
+                <th>AHU Requirement</th>
                 <th>SBC</th>
-                <th>SBC-2</th>
-                <th>Required By</th>
-                <th>Serve as an Elective In</th>
+                <!-- <th>SBC2</th> -->
             </tr>
         </thead>
     </table>
