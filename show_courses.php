@@ -1,14 +1,14 @@
 <?php include("header.php") ?>
 
 <div class="container">
-    <h1>Administer Courses</h1>
-    <select id="admin_drop_down">
-        <option value="ALL">Administer ALL Courses</option>
-        <option value="AMS">Administer AMS-related Courses</option>
-        <option value="CSE">Administer CSE-related Courses</option>
-        <option value="PHY">Administer PHY-related Courses</option>
+    <h1>Browse Courses</h1>
+    <select id="show_drop_down">
+        <option value="ALL">Show ALL Courses</option>
+        <option value="AMS">Show AMS-related Courses</option>
+        <option value="CSE">Show CSE-related Courses</option>
+        <option value="PHY">Show PHY-related Courses</option>
     </select>
-    <table id="admin_courses" class="display table-condensed" cellspacing="0" width="100%">
+    <table id="show_courses" class="display table-condensed" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th style="min-width: 10px"></th>
@@ -29,5 +29,5 @@
     <a href="/" class="btn btn-success">go back</a>
 </div>
 
-<script src="./js/admin_courses.js"></script>
+<script src="./js/show_courses.js"></script>
 <?php include("footer.php") ?>

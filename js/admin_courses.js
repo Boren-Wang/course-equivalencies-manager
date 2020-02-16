@@ -202,12 +202,12 @@ $(document).ready(function() {
         ]
     } );
 
-    // $('#admin_courses').on( 'click', 'tbody td:not(:first-child):not(.child)', function (e) {
-    //     editor.bubble( this );
-    // } );
+    $('#admin_courses').on( 'click', 'tbody td:not(:first-child):not(.child)', function (e) {
+        editor.bubble( this );
+    } );
 
     var table = $('#admin_courses').DataTable( {
-        dom: "Bfrtip",
+        dom: "Bfrtlip",
         ajax: {
             url: "./inc/query/admin_courses.php",
             type: "POST"
@@ -245,7 +245,10 @@ $(document).ready(function() {
         buttons: [
             { extend: "create", editor: editor },
             { extend: "edit",   editor: editor },
-            { extend: "remove", editor: editor }
+            { extend: "remove", editor: editor },
+            'csv', 
+            'pdf', 
+            'print'
         ],
         // initComplete: function () {
         //     this.api().columns(2).every( function () {
@@ -302,7 +305,7 @@ $(document).ready(function() {
     //     .search( "AMS" )
     //     .draw();
     // table.search( "AMS" ).draw();
-    $('#drop_down').on('change', function() {
+    $('#admin_drop_down').on('change', function() {
         // alert(this.value)
         if(this.value==="ALL"){
             table.search("").draw();
