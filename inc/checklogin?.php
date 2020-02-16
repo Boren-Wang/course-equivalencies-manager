@@ -1,14 +1,8 @@
 <?php
 	session_start();
 
-    define("HOST", "us-cdbr-iron-east-05.cleardb.net");
-    define("DB", "heroku_673c2b84b11cd77");
-    define("PORT", "3306");
-    define("USER", "b451271c84d327");
-    define("PWD", "d04d6c01");
-
 	try {
-	  $db = new PDO("mysql:host=".HOST.";dbname=".DB.";port".PORT, USER, PWD);
+	  $db = new PDO("mysql:host=".$_ENV["HOST"].";dbname=".$_ENV["DB"].";port".$_ENV["PORT"], $_ENV["USER"], $_ENV["PWD"]);
 
 	  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	  $db->exec("SET NAMES 'utf8'");
