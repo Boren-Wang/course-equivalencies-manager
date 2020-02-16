@@ -1,15 +1,8 @@
 <?php
 	session_start();
-//	include("./config/config.php");
-
-    define("HOST", "127.0.0.1");
-    define("DB", "iaps");
-    define("PORT", "3306");
-    define("USER", "root");
-    define("PWD", "mhw1015sz15,.");
 
 	try {
-	  $db = new PDO("mysql:host=".HOST.";dbname=".DB.";port".PORT, USER, PWD);
+	  $db = new PDO("mysql:host=".$_ENV["HOST"].";dbname=".$_ENV["DB"].";port".$_ENV["PORT"], $_ENV["USER"], $_ENV["PWD"]);
 
 	  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	  $db->exec("SET NAMES 'utf8'");
@@ -39,10 +32,11 @@
 
 	if(count($users) == 1) {
 		$_SESSION['user'] = $username;
-		header("location:../admin.php");
+		header("location:../admin_courses.php");
 		exit();
 	} else {
 		$_SESSION['error'] = true;
 		header("location:../login.php");
 		exit();
 	}
+?>

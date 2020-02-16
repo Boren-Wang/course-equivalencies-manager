@@ -1,4 +1,8 @@
-<?php include("header.php") ?>
+<?php 
+    include("header.php");
+    include("navbar_admin.php");
+?>
+
 
 <div class="container">
     <h1>Administer Courses</h1>
@@ -26,7 +30,7 @@
             </tr>
         </thead>
     </table>
-    <a href="/" class="btn btn-success">go back</a>
+    <a href="/" class="btn btn-success">Go back</a>
 </div>
 
 <script src="./js/admin_courses.js"></script>
